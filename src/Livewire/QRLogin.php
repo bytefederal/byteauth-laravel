@@ -37,7 +37,7 @@ class QRLogin extends Component
                 $this->qrCodeImage = base64_encode(QrCode::format('png')->size(250)->generate($this->qrCode));
                 Cache::put('sid_' . $this->sid, $this->sid, now()->addMinutes(10)); // Adjust the time as needed
                 Log::debug('Session generated', ['expected_sid' => $this->sid]);
-                $this->emit('sidUpdated', $this->sid);
+                $this->dispatch('sidUpdated', $this->sid);
             } else {
                 // Handle errors, e.g., log them or display a message
                 // For simplicity, we'll just log here
