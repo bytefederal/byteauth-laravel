@@ -25,6 +25,13 @@ class ByteAuthServiceProvider extends ServiceProvider
     {
         // Load views, routes, etc.
     	$this->loadViewsFrom(__DIR__.'/../resources/views', 'byteauth');
-	$this->publishes([__DIR__.'/path/to/resources/views' => resource_path('views/vendor/byteauth'),], 'byteauth-views');
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/byteauth'),
+        ], 'byteauth-views');
+
+        // If your package has routes, you can load them like this
+	// $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+	//
     }
 }
