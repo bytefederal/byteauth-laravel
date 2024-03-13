@@ -40,6 +40,14 @@ php artisan vendor:publish --provider="ByteFederal\\ByteAuthLaravel\\ByteAuthSer
 ```
 This will publish the ByteAuth-Laravel configuration file to your project's config directory. Edit this file as needed to match your application's requirements.
 
+Make sure to add the following three routes to your `routes/api.php` file:
+
+```bash
+Route::post('/webhook/registration', [WebhookController::class, 'handleRegistration']);
+Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
+Route::get('/check', [WebhookController::class, 'check']);
+```
+
 ## Usage
 To use ByteAuth-Laravel in your application, follow these steps:
 
