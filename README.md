@@ -48,14 +48,19 @@ Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
 Route::get('/check', [WebhookController::class, 'check']);
 ```
 
+or guest Route section. Make sure CORS rules allow the WebhookController to receive incoming posts. 
+
 ## Usage
 To use ByteAuth-Laravel in your application, follow these steps:
 
-- Route Setup: Import the package routes in your api.routes file.
-- Livewire Components: Utilize the provided Livewire components for the authentication UI.
-- Webhook Configuration: Set up the WebhookController to handle callbacks from Byte Federal's authentication system.
+- Route Setup: Import the package routes in your routes/api.php file.
+- Use the sample landing page at a route of your convenience. It will offer your users a way to log into your site or register using ByteWallet
+- To register your domain for free for this service go to wallet.bytefederal.com/web/login and register your domain, webhook url and API key.
+- Enjoy a biometrically secured passwordless authentication system
 
 Refer to the [documentation](https://fast.bytefederal.com) for detailed usage instructions.
+
+Happy coding!
 
 ## Contributing
 Contributions to ByteAuth-Laravel are welcome.
