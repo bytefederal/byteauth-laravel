@@ -54,6 +54,8 @@ Make sure to add the following three routes to your `routes/api.php` file:
 Route::post('/webhook/registration', [WebhookController::class, 'handleRegistration']);
 Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
 Route::get('/check', [WebhookController::class, 'check']);
+
+Route::get('/byte', [WebhookController::class, 'sample']);
 ```
 
 or guest Route section. Make sure CORS rules allow the WebhookController to receive incoming posts. 
