@@ -26,10 +26,11 @@
 	"simplesoftwareio/simple-qrcode": "^4.0"
     },
     "extra": {
-    "laravel": {
-        "providers": [
-            "ByteFederal\\ByteAuthLaravel\\Providers\\ByteAuthServiceProvider"
-        ]
+    	"laravel": {
+        	"providers": [
+            		"ByteFederal\\ByteAuthLaravel\\Providers\\ByteAuthServiceProvider"
+        	]
+    	}
     },
     "autoload": {
         "psr-4": {
