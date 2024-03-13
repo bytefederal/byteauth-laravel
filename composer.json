@@ -25,6 +25,12 @@
         "livewire/livewire": "^2.0 || ^3.0",
 	"simplesoftwareio/simple-qrcode": "^4.0"
     },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "ByteFederal\\ByteAuthLaravel\\Providers\\ByteAuthServiceProvider"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "ByteFederal\\ByteAuthLaravel\\": "src/"

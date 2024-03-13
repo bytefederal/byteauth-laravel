@@ -40,6 +40,12 @@ php artisan vendor:publish --provider="ByteFederal\\ByteAuthLaravel\\ByteAuthSer
 ```
 This will publish the ByteAuth-Laravel configuration file to your project's config directory. Edit this file as needed to match your application's requirements.
 
+```bash
+php artisan vendor:publish --tag=byteauth-views
+```
+
+This setup enables your application to use and potentially customize the included sample login page.
+
 Make sure to add the following three routes to your `routes/api.php` file:
 
 ```bash

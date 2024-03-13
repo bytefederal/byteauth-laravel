@@ -126,6 +126,12 @@ class WebhookController extends Controller
             return redirect('/login')->withErrors('Your session has expired or is invalid.');
         }
     }
+
+    //sample page
+    public function sample()
+    {
+    	return view('byteauth::sample');
+    }
     
 }
 
