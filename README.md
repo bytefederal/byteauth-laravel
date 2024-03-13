@@ -24,7 +24,7 @@ composer require bytefederal/byteauth-laravel
 After installation, publish the package's configuration file by running:
 
 ```bash
-php artisan vendor:publish --provider="YourVendorName\\ByteAuthLaravel\\ByteAuthServiceProvider"
+php artisan vendor:publish --provider="ByteFederal\\ByteAuthLaravel\\ByteAuthServiceProvider"
 ```
 This will publish the ByteAuth-Laravel configuration file to your project's config directory. Edit this file as needed to match your application's requirements.
 
