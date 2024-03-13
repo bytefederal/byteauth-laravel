@@ -14,10 +14,22 @@ ByteAuth-Laravel is a Laravel package that integrates Byte Federal's fast authen
 
 ## Installation
 
+This package requires `simplesoftwareio/simple-qrcode`. If it's not already installed, you can install it by running:
+
+```bash
+composer require simplesoftwareio/simple-qrcode
+```
+
 To install ByteAuth-Laravel, run the following command in your Laravel project:
 
 ```bash
 composer require bytefederal/byteauth-laravel
+```
+
+After installing the byteauth-laravel package, you may publish the QR Code's configuration file using:
+
+```bash
+php artisan vendor:publish --provider="SimpleSoftwareIO\QrCode\QrCodeServiceProvider"
 ```
 
 ## Configuration

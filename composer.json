@@ -1,0 +1,33 @@
+{
+    "name": "bytefederal/byteauth-laravel",
+    "description": "Byte Federal's fast authentication system built on bitcoin cryptographic standards for Laravel applications.",
+    "type": "library",
+    "keywords": [
+        "ByteFederal",
+        "Bitcoin",
+        "Authentication",
+        "QRCode",
+        "Bytename",
+        "Passwordless",
+        "ECDSA",
+        "Cryptography"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lennart Lopin",
+            "email": "lennart@bytefederal.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "laravel/framework": "^8.0",
+        "livewire/livewire": "^2.0",
+	"simplesoftwareio/simple-qrcode": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ByteFederal\\ByteAuthLaravel\\": "src/"
+        }
+    }
+}
