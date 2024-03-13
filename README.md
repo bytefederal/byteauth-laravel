@@ -1,3 +1,5 @@
+![ByteAuth-Laravel Logo](byteauth-laravel.png)
+
 # ByteAuth-Laravel
 
 ## Description
