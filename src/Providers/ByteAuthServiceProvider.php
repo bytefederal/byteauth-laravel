@@ -23,7 +23,7 @@ class ByteAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	 \Livewire\Livewire::component('q-r-login', \ByteFederal\ByteAuthLaravel\Http\Livewire\QRLogin::class);
+	 \Livewire\Livewire::component('q-r-login', \ByteFederal\ByteAuthLaravel\Livewire\QRLogin::class);
 
         // Load views, routes, etc.
     	$this->loadViewsFrom(__DIR__.'/../resources/views', 'byteauth');
