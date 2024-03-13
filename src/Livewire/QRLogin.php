@@ -50,7 +50,8 @@ class QRLogin extends Component
 
     public function render()
     {
-        return view('livewire.qr-login');
+        return view('byteauth::livewire.qr-login');
     }
+
 }
 
