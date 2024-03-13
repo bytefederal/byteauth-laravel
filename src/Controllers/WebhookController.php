@@ -132,7 +132,7 @@ class WebhookController extends Controller
     //sample page
     public function sample()
     {
-    	return view('byteauth::sample');
+    	return view('byteauth::login');
     }
     
 }
