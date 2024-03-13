@@ -26,7 +26,7 @@ class QRLogin extends Component
             // Make a request to the FastAPI service to generate a new QR code
             $response = Http::get('https://auth.bytefederal.com/getqrcode', [
                 'sid' => $this->sid != 'null' ? $this->sid : null,
-                'domain' => 'viewer.bytefederal.com'
+                'domain' => 'your-domain-name.com'
             ]);
     
             if ($response->successful()) {
@@ -50,7 +50,7 @@ class QRLogin extends Component
 
     public function render()
     {
-        return view('livewire.q-r-login');
+        return view('livewire.qr-login');
     }
 }
 
