@@ -61,6 +61,8 @@ return [
 ];
 ```
 
+Make sure to register your domain in the API section [on ByteFederal](https://wallet.bytefederal.com/web/login).
+
 ### Utilize Configuration in Your Component:
 Update your Livewire component or other parts of your application to use this configuration value when generating QR codes or making related API calls.
 
