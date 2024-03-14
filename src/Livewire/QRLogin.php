@@ -25,8 +25,7 @@ class QRLogin extends Component
         if (!Auth::check()) {
             // Make a request to the FastAPI service to generate a new QR code
             $response = Http::get('https://auth.bytefederal.com/getqrcode', [
-                'sid' => $this->sid != 'null' ? $this->sid : null,
-                'domain' => 'your-domain-name.com'
+		'domain' => config('byteauth.domain'),
             ]);
     
             if ($response->successful()) {

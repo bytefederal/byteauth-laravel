@@ -35,5 +35,14 @@ class ByteAuthServiceProvider extends ServiceProvider
         // If your package has routes, you can load them like this
 	// $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 	//
+	    __DIR__.'/../config/byteauth.php' => config_path('byteauth.php'),
+    	], 'config');
+    }
+
+    public function register()
+    {
+    	$this->mergeConfigFrom(
+        	__DIR__.'/../config/byteauth.php', 'byteauth'
+    	);
     }
 }
