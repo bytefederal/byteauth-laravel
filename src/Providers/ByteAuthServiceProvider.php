@@ -13,7 +13,12 @@ class ByteAuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Binding code here
+        // Register bindings or other package services here
+
+        // Merge package configuration file with the application's copy.
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/byteauth.php', 'byteauth'
+        );
     }
 
     /**
@@ -23,26 +28,22 @@ class ByteAuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	 \Livewire\Livewire::component('q-r-login', \ByteFederal\ByteAuthLaravel\Livewire\QRLogin::class);
+        \Livewire\Livewire::component('q-r-login', \ByteFederal\ByteAuthLaravel\Livewire\QRLogin::class);
 
-        // Load views, routes, etc.
-    	$this->loadViewsFrom(__DIR__.'/../resources/views', 'byteauth');
+        // Load views
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'byteauth');
 
+        // Publish views
         $this->publishes([
             __DIR__.'/../resources/views' => resource_path('views/vendor/byteauth'),
         ], 'byteauth-views');
 
-        // If your package has routes, you can load them like this
-	// $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-	//
-	    __DIR__.'/../config/byteauth.php' => config_path('byteauth.php'),
-    	], 'config');
-    }
+        // Publish config
+        $this->publishes([
+            __DIR__.'/../config/byteauth.php' => config_path('byteauth.php'),
+        ], 'byteauth-config');
 
-    public function register()
-    {
-    	$this->mergeConfigFrom(
-        	__DIR__.'/../config/byteauth.php', 'byteauth'
-    	);
+        // Load routes, uncomment if you have routes to load
+        // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 }
