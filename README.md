@@ -42,6 +42,28 @@ php artisan vendor:publish --provider="ByteFederal\\ByteAuthLaravel\\ByteAuthSer
 ```
 This will publish the ByteAuth-Laravel configuration file to your project's config directory. Edit this file as needed to match your application's requirements.
 
+Additionally, to customize the domain used by the QR code generation process:
+
+### Publish the Configuration:
+
+```bash
+php artisan vendor:publish --tag=byteauth-config
+```
+
+This command publishes the ByteAuth-Laravel configuration file to your Laravel project's config directory.
+
+### Edit the Configuration File:
+Open the published config/byteauth.php in your project and set the domain value to your website's domain.
+
+```bash
+return [
+    'domain' => 'your-website-domain.com',
+];
+```
+
+### Utilize Configuration in Your Component:
+Update your Livewire component or other parts of your application to use this configuration value when generating QR codes or making related API calls.
+
 ```bash
 php artisan vendor:publish --tag=byteauth-views
 ```
