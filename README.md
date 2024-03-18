@@ -4,7 +4,14 @@
 
 ## Description
 
-ByteAuth-Laravel is a Laravel package that integrates Byte Federal's fast authentication system into your Laravel application, leveraging bitcoin cryptographic standards. This advanced package not only offers a seamless way to onboard users and enable secure sign-in functionalities, akin to the Webauthn standard, but it also introduces several groundbreaking features. It ensures that cryptographic keys are backed up for added security, operates independently of the user's operating system, and incorporates a user identity check to thwart fraudulent users. Furthermore, ByteAuth-Laravel includes a liveness check to verify the presence of real human beings during authentication. Additionally, it furnishes users with a wallet that supports lightning and bitcoin transactions, enhancing the overall user experience. By integrating ByteAuth-Laravel, you can easily implement a state-of-the-art, comprehensive authentication system in your Laravel projects, harnessing the robustness and security of bitcoin's cryptographic infrastructure.
+ByteAuth-Laravel is a plug and play Laravel package that integrates Byte Federal's fast authentication system into your Laravel application, leveraging bitcoin cryptographic (ECDSA/SHA256) standards. This advanced package not only offers a seamless way to onboard users and enable secure sign-in functionalities, akin to the Webauthn standard, but it also introduces several groundbreaking features: 
+
+- It ensures that cryptographic keys are backed up for added security, 
+- operates independently of the user's operating system, and incorporates a user identity check to thwart fraudulent users.
+- Furthermore, ByteAuth-Laravel includes a liveness check to verify the presence of real human beings during authentication.
+- Additionally, it furnishes users with a wallet that supports lightning and bitcoin transactions, enhancing the overall user experience.
+
+By integrating ByteAuth-Laravel, you can easily implement a state-of-the-art, comprehensive authentication system in your Laravel projects, harnessing the robustness and security of bitcoin's cryptographic infrastructure.
 
 [Learn more about ByteAut / Fast Login](https://fast.bytefederal.com).
 
