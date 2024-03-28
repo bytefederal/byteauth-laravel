@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'domain' => env('BYTEAUTH_DOMAIN_REGISTERED', 'your-default-domain.com'),
+	'domain'  => env('BYTEAUTH_DOMAIN_REGISTERED', 'your-default-domain.com'),
+	'api_key' => env('BYTEAUTH_API_KEY', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
 ];
