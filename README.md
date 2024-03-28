@@ -95,6 +95,20 @@ Route::get('/byte', [WebhookController::class, 'sample']);
 
 or guest Route section. Make sure CORS rules allow the WebhookController to receive incoming posts. 
 
+## Troubleshooting
+You may have to install `imagick` to enable the QR code generation on your server. Look out for messages like this:
+
+```bash
+[previous exception] [object] (BaconQrCode\\Exception\\RuntimeException(code: 0): You need to install the imagick extension to use this back end at /var/www/laravel/vendor/bacon/bacon-qr-code/src/Renderer/Image/ImagickImageBackEnd.php:64)
+```
+Simply install imagick and add its php module:
+
+```bash
+sudo apt-get install php8.2-imagick
+sudo phpenmod imagick
+sudo systemctl restart apache2
+```
+
 ## Usage
 To use ByteAuth-Laravel in your application, follow these steps:
 
@@ -103,7 +117,7 @@ To use ByteAuth-Laravel in your application, follow these steps:
 - To register your domain for free for this service go to wallet.bytefederal.com/web/login and register your domain, webhook url and API key.
 - Enjoy a biometrically secured passwordless authentication system
 
-Refer to the [documentation](https://fast.bytefederal.com) for detailed usage instructions.
+Refer to the [documentation](https://fast.bytefederal.com/docs/PlugNPlay/byteauth-laravel) for detailed usage instructions.
 
 Happy coding!
 
