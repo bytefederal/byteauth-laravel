@@ -122,7 +122,7 @@ class WebhookController extends Controller
     
             Log::debug('Finally! Redirecting to dashboard...');
             // Redirect to the intended dashboard page or just display it
-            return redirect('/home');
+            return redirect(config('byteauth.home'));
         } else {
             // Handle invalid or expired SID
             return redirect('/login')->withErrors('Your session has expired or is invalid.');
