@@ -11,10 +11,41 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Http;
 
 class WebhookController extends Controller
 {
+
+    public function verifySessionIntegrity($sid, $email)
+    {
+        $apikey = config('byteauth.api_key');
+        if (!$apikey) {
+            Log::error('API key is missing from the configuration.');
+            return false;
+        }
+
+        $query = http_build_query([
+            'api_key' => $apikey,
+            'sid' => $sid,
+            'email' => $email,
+            'domain' => config('byteauth.domain')
+        ]);
+
+        $url = "https://auth.bytefederal.com/api/verify-session?" . $query;
+
+        // Making a GET request
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+        ])->get($url);
+
+        // Log::debug("Making a GET request to: $url");
+        // Log::debug('API Response Status:', ['status' => $response->status()]);
+        // Log::debug('API Response Body:', ['body' => $response->body()]);
+
+        return $response->successful();
+    }
+
+
     public function handleRegistration(Request $request)
     {
         Log::debug('Registration Webhook received: ', $request->all());
@@ -30,6 +61,12 @@ class WebhookController extends Controller
         $userData = $request->all();
         $name =  $userData['bytename'];
     
+        // Verify session integrity with the API
+        if (!$this->verifySessionIntegrity($receivedSid, $userData['email'])) {
+            Log::debug('Session verification failed.', ['received_sid' => $receivedSid]);
+            return response()->json(['message' => 'Session verification failed'], 401);
+        }
+
         // Perform user creation logic
         $user = User::firstOrCreate([
             'email' => $userData['email'],
@@ -56,6 +93,13 @@ class WebhookController extends Controller
     
         $userData = $request->all();
         $name =  $userData['bytename'];
+
+        // Verify session integrity with the API
+        if (!$this->verifySessionIntegrity($receivedSid, $userData['email'])) {
+            Log::debug('Session verification failed.', ['received_sid' => $receivedSid]);
+            return response()->json(['message' => 'Session verification failed'], 401);
+        }
+
         //why not firstorfail? user might have been removed locally but is still available globally for this website
         //to ban a user, set user to disabled in laravel's user table, don't just remove.
         $user = User::firstOrCreate([
