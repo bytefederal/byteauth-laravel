@@ -64,11 +64,13 @@ php artisan vendor:publish --tag=byteauth-config
 This command publishes the ByteAuth-Laravel configuration file to your Laravel project's config directory.
 
 ### Edit the Configuration File:
-Open the published config/byteauth.php in your project and set the domain value to your website's domain.
+Open the published config/byteauth.php in your project and set the domain value to your website's domain, your api key and your website's dashboard path for the redirect after successful login.
 
 ```bash
 return [
-    'domain' => 'your-website-domain.com',
+    'domain' => env('BYTEAUTH_DOMAIN_REGISTERED', 'my.example.com'),
+    'api_key' => env('BYTEAUTH_API_KEY', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'),
+    'home' => env("BYTEAUTH_HOME_REDIRECT", "/home"),
 ];
 ```
 
@@ -86,10 +88,17 @@ This setup enables your application to use and potentially customize the include
 Make sure to add the following three routes to your `routes/api.php` file:
 
 ```bash
+//backend webhook endpoints
 Route::post('/webhook/registration', [WebhookController::class, 'handleRegistration']);
 Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
-Route::get('/check', [WebhookController::class, 'check']);
+```
+While the above routes do not require session information and will be called from the relay server, the following endpoints DO need session information and should thus be set up in your `routes/web.php` file:
 
+```bash
+//frontend session handling endpoints
+Route::get('/api/check', [WebhookController::class, 'check']);
+Route::get('/api/bwauth', [WebhookController::class, 'bwauth']);
+//sample login page
 Route::get('/byte', [WebhookController::class, 'sample']);
 ```
 
