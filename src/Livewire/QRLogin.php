@@ -27,6 +27,7 @@ class QRLogin extends Component
             $response = Http::get('https://auth.bytefederal.com/getqrcode', [
 		        'domain' => config('byteauth.domain'),
                 'api_key' => config('byteauth.api_key'),
+                'protocol' => 'bytewallet', // or 'https' if desired
             ]);
     
             if ($response->successful()) {
