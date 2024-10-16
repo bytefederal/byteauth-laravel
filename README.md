@@ -88,6 +88,8 @@ This setup enables your application to use and potentially customize the include
 Make sure to add the following three routes to your `routes/api.php` file:
 
 ```bash
+use ByteFederal\ByteAuthLaravel\Controllers\WebhookController;
+...
 //backend webhook endpoints
 Route::post('/webhook/registration', [WebhookController::class, 'handleRegistration']);
 Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
@@ -95,6 +97,8 @@ Route::post('/webhook/login', [WebhookController::class, 'handleLogin']);
 While the above routes do not require session information and will be called from the relay server, the following endpoints DO need session information and should thus be set up in your `routes/web.php` file:
 
 ```bash
+use ByteFederal\ByteAuthLaravel\Controllers\WebhookController;
+...
 //frontend session handling endpoints
 Route::get('/api/check', [WebhookController::class, 'check']);
 Route::get('/api/bwauth', [WebhookController::class, 'bwauth']);
