@@ -20,6 +20,14 @@ class QRLogin extends Component
         $this->generateQRCode();
     }
 
+    protected function getLivewireVersion()
+    {
+        if (class_exists('\Composer\InstalledVersions')) {
+            return \Composer\InstalledVersions::getVersion('livewire/livewire');
+        }
+        return null;
+    }
+
     public function generateQRCode()
     {
         if (!Auth::check()) {
@@ -38,7 +46,17 @@ class QRLogin extends Component
                 $this->qrCodeImage = base64_encode(QrCode::format('png')->size(250)->generate($this->qrCode));
                 Cache::put('sid_' . $this->sid, $this->sid, now()->addMinutes(10)); // Adjust the time as needed
                 Log::debug('Session generated', ['expected_sid' => $this->sid]);
-                $this->dispatch('sidUpdated', $this->sid);
+
+                $version = $this->getLivewireVersion();
+
+                if (version_compare($version, '3.0.0', '>=')) {
+                    // Use Livewire 3 method
+                    $this->dispatch('sidUpdated', $this->sid);
+                } else {
+                    // Use Livewire 2 method
+                    $this->emit('sidUpdated', $this->sid);
+                }    
+            
             } else {
                 // Handle errors, e.g., log them or display a message
                 // For simplicity, we'll just log here
