@@ -22,8 +22,8 @@
     "require": {
         "php": "^7.3|^8.0",
         "laravel/framework": "^8.0 || ^9.0 || ^10.0 || ^11.0",
-        "livewire/livewire": "^2.12",
-	"simplesoftwareio/simple-qrcode": "^4.0"
+        "livewire/livewire": "^2.12 || ^3.0",
+	    "simplesoftwareio/simple-qrcode": "^4.0"
     },
     "extra": {
     	"laravel": {
