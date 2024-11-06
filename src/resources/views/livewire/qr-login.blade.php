@@ -15,7 +15,7 @@
                                         animation: spin 2s linear infinite;">
             </div>
         </div>
-        <div wire:loading.remove wire:poll.30000ms="generateQRCode">
+        <div wire:loading.remove wire:poll.60000ms="generateQRCode">
             @if($qrCodeImage)
                 <img src="data:image/png;base64,{{ $qrCodeImage }}" height="250" width="250">
             @endif
