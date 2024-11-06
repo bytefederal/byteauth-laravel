@@ -43,6 +43,12 @@ class ByteAuthServiceProvider extends ServiceProvider
             __DIR__.'/../config/byteauth.php' => config_path('byteauth.php'),
         ], 'byteauth-config');
 
+         // Publish the WebhookController
+        $this->publishes([
+            __DIR__.'/../Controllers/WebhookController.php' => app_path('Http/Controllers/WebhookController.php'),
+        ], 'byteauth-controllers');
+
+
         // Load routes, uncomment if you have routes to load
         // $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
