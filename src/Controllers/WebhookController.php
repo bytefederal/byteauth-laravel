@@ -50,7 +50,13 @@ class WebhookController extends Controller
     {
         Log::debug('Registration Webhook received: ', $request->all());
     
-        $receivedSid = $request->input('sid');
+        $validatedData = $request->validate([
+            'sid' => 'required|string',
+            'email' => 'required|email',
+            'bytename' => 'required|string',
+        ]);
+
+        $receivedSid = $validatedData['sid'];
     
         // Check for a valid session ID
         if (!Cache::has('sid_' . $receivedSid)) {
@@ -58,18 +64,18 @@ class WebhookController extends Controller
             return response()->json(['message' => 'Invalid session ID'], 401);
         }
     
-        $userData = $request->all();
-        $name =  $userData['bytename'];
+        $email = $validatedData['email'];
+        $name =  $validatedData['bytename'];
     
         // Verify session integrity with the API
-        if (!$this->verifySessionIntegrity($receivedSid, $userData['email'])) {
+        if (!$this->verifySessionIntegrity($receivedSid, $validatedData['email'])) {
             Log::debug('Session verification failed.', ['received_sid' => $receivedSid]);
             return response()->json(['message' => 'Session verification failed'], 401);
         }
 
         // Perform user creation logic
         $user = User::firstOrCreate([
-            'email' => $userData['email'],
+            'email' => $email,
         ], [
             'name' => $name,
             'password' => Hash::make(Str::random(16)), // Generate a random password
@@ -83,7 +89,12 @@ class WebhookController extends Controller
     {
         Log::debug('Login Webhook received: ', $request->all());
     
-        $receivedSid = $request->input('sid');
+        $validatedData = $request->validate([
+            'sid' => 'required|string',
+            'email' => 'required|email',
+            'bytename' => 'required|string',
+        ]);
+        $receivedSid = $validatedData['sid'];
     
         // Validate the SID by checking the cache
         if (!Cache::has('sid_' . $receivedSid)) {
@@ -91,8 +102,8 @@ class WebhookController extends Controller
             return response()->json(['message' => 'Invalid session ID'], 401);
         }
     
-        $userData = $request->all();
-        $name =  $userData['bytename'];
+        $email = $validatedData['email'];
+        $name =  $validatedData['bytename'];
 
         // Verify session integrity with the API
         if (!$this->verifySessionIntegrity($receivedSid, $userData['email'])) {
@@ -103,7 +114,7 @@ class WebhookController extends Controller
         //why not firstorfail? user might have been removed locally but is still available globally for this website
         //to ban a user, set user to disabled in laravel's user table, don't just remove.
         $user = User::firstOrCreate([
-            'email' => $userData['email'],
+            'email' => $email,
         ], [
             'name' => $name,
             'password' => Hash::make(Str::random(16)), // Generate a random password
